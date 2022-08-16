@@ -129,6 +129,16 @@ public class IBusinessImpl implements IBusiness {
      * @return
      * @throws Exception
      */
+    @Override
+    public Chamber getChamberById(Long id) throws Exception {
+        return chamberRepository.findById(id).get();
+    }
+
+    /**
+     * @param id
+     * @return
+     * @throws Exception
+     */
 
 
     /**
@@ -170,6 +180,13 @@ public class IBusinessImpl implements IBusiness {
     }
 
     /**
+     * @param name
+     * @return
+     * @throws Exception
+     */
+
+
+    /**
      * @return
      */
     @Override
@@ -196,4 +213,6 @@ public class IBusinessImpl implements IBusiness {
     public void deleteUser(Long id) throws Exception {
         userRepository.deleteById(id);
     }
+
+
 }

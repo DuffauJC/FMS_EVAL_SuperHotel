@@ -26,7 +26,8 @@ public interface IBusiness {
     public void deleteHotel(Long id) throws Exception;
 
     public Hotel getHotelById(Long id) throws Exception;
-   public  List<Hotel> readAllHotelByCityId(Long id);
+
+    public List<Hotel> readAllHotelByCityId(Long id);
 
 
     //	gestion chambre /////////////
@@ -39,7 +40,7 @@ public interface IBusiness {
 
     public void deleteChamber(Long id) throws Exception;
 
-
+    public Chamber getChamberById(Long id) throws Exception;
 
     //	gestion city ////////////
 

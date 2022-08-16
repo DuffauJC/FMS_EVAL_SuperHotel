@@ -2,6 +2,7 @@ package fr.fms.FMS_EVAL_SuperHotel.web;
 
 
 import fr.fms.FMS_EVAL_SuperHotel.business.IBusinessImpl;
+import fr.fms.FMS_EVAL_SuperHotel.entities.City;
 import fr.fms.FMS_EVAL_SuperHotel.entities.Hotel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class HotelController {
     private IBusinessImpl iBusiness;
 
     @GetMapping("/all")
-    public List<Hotel> allUserTasks(){
+    public List<Hotel> allHotel(){
         return iBusiness.getAllHotel();
     }
 
@@ -41,9 +42,10 @@ public class HotelController {
 
     }
 
-    @GetMapping ("/hotelBycity/{id}")
-    public List<Hotel> getHotelByCityId(@PathVariable("id") Long id){
-        return iBusiness.readAllHotelByCityId(id);
+    @GetMapping ("/hotelBycity/{city}")
+    public List<Hotel> getHotelByCityId(@PathVariable("city") City city){
+        // ahouter la recherhce de la ville puis des hotels
+        return iBusiness.readAllHotelByCity(city);
     }
 }
 
