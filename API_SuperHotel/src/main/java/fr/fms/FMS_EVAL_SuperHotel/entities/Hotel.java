@@ -38,5 +38,14 @@ public class Hotel {
 	private List<Chamber> chamber;
 
 
-	
+	public Hotel(Long id, String name, String phone, String address, int stars, int freeChambers, String imgName, City city) {
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
+		this.stars = stars;
+		this.freeChambers = freeChambers;
+		this.imgName = imgName;
+		this.city = city;
+	}
 }

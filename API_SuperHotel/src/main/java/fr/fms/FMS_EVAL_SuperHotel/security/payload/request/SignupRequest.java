@@ -1,5 +1,8 @@
 package fr.fms.FMS_EVAL_SuperHotel.security.payload.request;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 public class SignupRequest {

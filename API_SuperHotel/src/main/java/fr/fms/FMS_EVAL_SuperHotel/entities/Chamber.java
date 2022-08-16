@@ -4,12 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 /**
  * @author Stagiaire08P
- *
  */
 @Entity
 @Data
@@ -17,14 +18,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString
 public class Chamber {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private int numberChamber;
+    private int bed;
+    private double price;
 
-	private int bed;
-	private float price;
+    @NotNull
+    private boolean dispo;
 
-	@ManyToOne
-	private Hotel hotel;
+    @ManyToOne
+    private Hotel hotel;
 
 
 }

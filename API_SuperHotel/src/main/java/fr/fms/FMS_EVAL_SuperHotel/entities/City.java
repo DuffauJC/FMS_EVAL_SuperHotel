@@ -34,6 +34,8 @@ public class City {
     @JoinColumn(name = "city_id")
     private List<Hotel> hotels;
 
-
-
+    public City(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

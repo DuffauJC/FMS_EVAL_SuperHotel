@@ -1,7 +1,7 @@
 package fr.fms.FMS_EVAL_SuperHotel.fileService.controller;
 
-import fr.fms.FMS_Spring_Trainings_Api.file.service.IFileSytemStorage;
-import fr.fms.FMS_Spring_Trainings_Api.file.service.response.FileResponse;
+import fr.fms.FMS_EVAL_SuperHotel.fileService.IFileSytemStorage;
+import fr.fms.FMS_EVAL_SuperHotel.fileService.response.FileResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

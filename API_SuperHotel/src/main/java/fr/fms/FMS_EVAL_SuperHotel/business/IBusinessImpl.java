@@ -57,11 +57,13 @@ public class IBusinessImpl implements IBusiness {
 
     /**
      * @param hotel
+     * @return
      * @throws Exception
      */
     @Override
-    public void saveOrUpdateHotel(Hotel hotel) throws Exception {
+    public Hotel saveOrUpdateHotel(Hotel hotel) throws Exception {
         hotelRepository.save(hotel);
+        return hotel;
     }
 
     /**
@@ -73,6 +75,19 @@ public class IBusinessImpl implements IBusiness {
         hotelRepository.deleteById(id);
     }
 
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Hotel> readAllHotelByCityId(Long id) {
+        return hotelRepository.findByCityId(id);
+    }
+
+    @Override
+    public Hotel getHotelById(Long id) throws Exception {
+        return hotelRepository.findById(id).get();
+    }
     /**
      * @return
      */
@@ -91,11 +106,13 @@ public class IBusinessImpl implements IBusiness {
 
     /**
      * @param chamber
+     * @return
      * @throws Exception
      */
     @Override
-    public void saveOrUpdateChamber(Chamber chamber) throws Exception {
+    public Chamber saveOrUpdateChamber(Chamber chamber) throws Exception {
         chamberRepository.save(chamber);
+        return chamber;
     }
 
     /**
@@ -108,6 +125,13 @@ public class IBusinessImpl implements IBusiness {
     }
 
     /**
+     * @param id
+     * @return
+     * @throws Exception
+     */
+
+
+    /**
      * @return
      */
     @Override
@@ -117,11 +141,13 @@ public class IBusinessImpl implements IBusiness {
 
     /**
      * @param city
+     * @return
      * @throws Exception
      */
     @Override
-    public void saveOrUpdateCity(City city) throws Exception {
+    public City saveOrUpdateCity(City city) throws Exception {
         cityRepository.save(city);
+        return city;
     }
 
     /**
@@ -134,6 +160,16 @@ public class IBusinessImpl implements IBusiness {
     }
 
     /**
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public City getCityById(Long id) throws Exception {
+        return cityRepository.findById(id).get();
+    }
+
+    /**
      * @return
      */
     @Override
@@ -143,11 +179,13 @@ public class IBusinessImpl implements IBusiness {
 
     /**
      * @param user
+     * @return
      * @throws Exception
      */
     @Override
-    public void saveOrUpdateUser(User user) throws Exception {
+    public User saveOrUpdateUser(User user) throws Exception {
         userRepository.save(user);
+        return user;
     }
 
     /**

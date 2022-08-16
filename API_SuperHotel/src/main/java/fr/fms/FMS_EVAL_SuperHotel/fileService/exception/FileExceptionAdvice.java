@@ -1,6 +1,6 @@
 package fr.fms.FMS_EVAL_SuperHotel.fileService.exception;
 
-import fr.fms.FMS_Spring_Trainings_Api.file.service.model.ResponseError;
+import fr.fms.FMS_EVAL_SuperHotel.fileService.model.ResponseError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

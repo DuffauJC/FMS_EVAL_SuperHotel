@@ -1,6 +1,6 @@
 package fr.fms.FMS_EVAL_SuperHotel.security.security.jwt;
 
-import fr.fms.FMS_Spring_Trainings_Api.security.security.services.UserDetailsServiceImpl;
+import fr.fms.FMS_EVAL_SuperHotel.security.security.services.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

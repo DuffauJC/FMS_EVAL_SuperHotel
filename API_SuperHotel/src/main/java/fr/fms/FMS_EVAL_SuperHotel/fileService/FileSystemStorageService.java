@@ -1,9 +1,8 @@
 package fr.fms.FMS_EVAL_SuperHotel.fileService;
 
-
-import fr.fms.FMS_Spring_Trainings_Api.file.service.exception.FileNotFoundException;
-import fr.fms.FMS_Spring_Trainings_Api.file.service.exception.FileStorageException;
-import fr.fms.FMS_Spring_Trainings_Api.file.service.properties.FileUploadProperties;
+import fr.fms.FMS_EVAL_SuperHotel.fileService.exception.FileNotFoundException;
+import fr.fms.FMS_EVAL_SuperHotel.fileService.exception.FileStorageException;
+import fr.fms.FMS_EVAL_SuperHotel.fileService.properties.FileUploadProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
