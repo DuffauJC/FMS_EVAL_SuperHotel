@@ -61,31 +61,32 @@ public class FmsEvalSuperHotelApplication implements CommandLineRunner {
         Hotel Hotel_Sud = hotelRepository
                 .save(new Hotel(null, "Hotel Du Sud", "0412548", "45, av de la Brouette", 3, 10, "hotel.png", Toulouse));
         Hotel Hotel_Marseille = hotelRepository
-                .save(new Hotel(null, "Hotel De la plage", "0412548", "45, av de la plage", 4, 19, "hotel.png",Marseille));
+                .save(new Hotel(null, "Hotel De la plage", "0412548", "45, av de la plage", 4, 19, "hotel.png", Marseille));
         Hotel Hotel_Lyon = hotelRepository
                 .save(new Hotel(null, "Hotel Du Bouchon", "0412548", "45, av de la Lyonnaise", 6, 25, "hotel.png", Lyon));
         Hotel Hotel_Paris = hotelRepository
                 .save(new Hotel(null, "Hotel Mont-Martre", "0412548", "45, av des champs en cotons", 2, 10, "hotel.png", Paris));
+        
+// chamber
+        chamberRepository.save(new Chamber(null, 1, 1, 65.2, true, Hotel_Nord));
+        chamberRepository.save(new Chamber(null, 2, 2, 90, true, Hotel_Nord));
+        chamberRepository.save(new Chamber(null, 3, 1, 65.2, true, Hotel_Nord));
 
-        chamberRepository.save(new Chamber(null,1,1,65.2,true,Hotel_Nord));
-        chamberRepository.save(new Chamber(null,2,2,90,true,Hotel_Nord));
-        chamberRepository.save(new Chamber(null,3,1,65.2,true,Hotel_Nord));
+        chamberRepository.save(new Chamber(null, 1, 1, 65.2, true, Hotel_Sud));
+        chamberRepository.save(new Chamber(null, 2, 2, 90, true, Hotel_Sud));
+        chamberRepository.save(new Chamber(null, 3, 1, 65.2, true, Hotel_Sud));
 
-        chamberRepository.save(new Chamber(null,1,1,65.2,true,Hotel_Sud));
-        chamberRepository.save(new Chamber(null,2,2,90,true,Hotel_Sud));
-        chamberRepository.save(new Chamber(null,3,1,65.2,true,Hotel_Sud));
+        chamberRepository.save(new Chamber(null, 1, 1, 65.2, true, Hotel_Marseille));
+        chamberRepository.save(new Chamber(null, 2, 2, 90, true, Hotel_Marseille));
+        chamberRepository.save(new Chamber(null, 3, 1, 65.2, true, Hotel_Marseille));
 
-        chamberRepository.save(new Chamber(null,1,1,65.2,true,Hotel_Marseille));
-        chamberRepository.save(new Chamber(null,2,2,90,true,Hotel_Marseille));
-        chamberRepository.save(new Chamber(null,3,1,65.2,true,Hotel_Marseille));
+        chamberRepository.save(new Chamber(null, 1, 1, 65.2, true, Hotel_Lyon));
+        chamberRepository.save(new Chamber(null, 2, 2, 90, true, Hotel_Lyon));
+        chamberRepository.save(new Chamber(null, 3, 1, 65.2, true, Hotel_Lyon));
 
-        chamberRepository.save(new Chamber(null,1,1,65.2,true,Hotel_Lyon));
-        chamberRepository.save(new Chamber(null,2,2,90,true,Hotel_Lyon));
-        chamberRepository.save(new Chamber(null,3,1,65.2,true,Hotel_Lyon));
-
-        chamberRepository.save(new Chamber(null,1,1,65.2,true,Hotel_Paris));
-        chamberRepository.save(new Chamber(null,2,2,90,true,Hotel_Paris));
-        chamberRepository.save(new Chamber(null,3,1,65.2,true,Hotel_Paris));
+        chamberRepository.save(new Chamber(null, 1, 1, 65.2, true, Hotel_Paris));
+        chamberRepository.save(new Chamber(null, 2, 2, 90, true, Hotel_Paris));
+        chamberRepository.save(new Chamber(null, 3, 1, 65.2, true, Hotel_Paris));
 
     }
 }
