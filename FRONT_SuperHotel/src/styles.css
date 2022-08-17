@@ -114,13 +114,13 @@ li {
 
 /*  admin home************** */
 #adminCard {
-    border: 1px solid #DEB887;
-    box-shadow: 10px 10px 5px 0px rgba(222, 184, 135, 0.75);
+    border: 1px solid rgba(209, 45, 44, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(209, 45, 44, 0.75);
 }
 
 #adminCard:hover {
     cursor: pointer;
-    background-color: #DEB887;
+    background-color: lightpink;
 }
 
 .x-del {

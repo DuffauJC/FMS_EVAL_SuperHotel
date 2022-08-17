@@ -22,11 +22,8 @@ export class ApiService {
         //console.log(this.headers)
     }
 
-    public saveHotel(hotel:Hotel) {
-        return this.http.post<Hotel>(environment.host + "/hotel/saveHotel", hotel, { headers: this.headers });
-    }
-
-   
+  
+//    get //////
     public getHotel() {
         return this.http.get<Hotel[]>(environment.host + "/hotel/all")
     }
@@ -46,7 +43,14 @@ export class ApiService {
         return this.http.get<Chamber[]>(environment.host + "/chamber/chamberByHotel/" + id)
     }
 
+    // post //////
+    public saveHotel(hotel: Hotel) {
+        return this.http.post<Hotel>(environment.host + "/hotel/saveHotel", hotel, { headers: this.headers });
+    }
 
+    public saveCity(data:any) {
+        return this.http.post<any>(environment.host + "/city/saveCity", data, { headers: this.headers });
+    }
 
 
     // login
