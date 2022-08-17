@@ -1,14 +1,16 @@
+import { Hotel } from "./hotel.model";
+
 export class Chamber {
     id: number
     bed: number;
-    hotelId:number;
+    hotelId:Hotel;
     dispo: boolean;
     numberChamber: number;
     price:number
 
 
     constructor(id: number, bed: number,
-        hotelId: number,
+        hotelId: Hotel,
         dispo: boolean,
         numberChamber: number,price:number) {
         

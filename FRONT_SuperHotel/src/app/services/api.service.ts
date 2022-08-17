@@ -4,6 +4,7 @@ import { HttpClient, HttpEvent, HttpHeaders, HttpParams } from '@angular/common/
 import { environment } from 'src/environments/environment';
 import { Hotel } from '../model/hotel.model';
 import { City } from '../model/city.model';
+import { Chamber } from '../model/chamber.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -29,34 +30,23 @@ export class ApiService {
     public getHotel() {
         return this.http.get<Hotel[]>(environment.host + "/hotel/all")
     }
-    public getHotelByName(name: any) {
-        return this.http.get<Hotel[]>(environment.host + "/theaters?name=" + name)
+    public getHotelByCityName(name: any) {
+        return this.http.get<Hotel[]>(environment.host + "/hotel/hotelBycity/" + name)
+    }
+    public getHotelById(id: any) {
+        return this.http.get<Hotel>(environment.host + "/hotel/" + id)
     }
     public getCities() {
         return this.http.get<City[]>(environment.host + "/city/all")
     }
+    public getCitylById(id: any) {
+        return this.http.get<any>(environment.host + "/city/" + id)
+    }
+    public getChambersByHotel(id: any) {
+        return this.http.get<Chamber[]>(environment.host + "/chamber/chamberByHotel/" + id)
+    }
 
-    // non utilisé
-    // public getCategory(id: number) {
-    //     return this.http.get<Category>(environment.host + "/category" + id)
-    // }
 
-    // public editTask(task: Tasks) {
-    //     return this.http.post<Tasks>(environment.host + "/editTask", task, { headers: this.headers })
-    // }
-
-    // public getTasksBySearch(description: String) {
-    //     return this.http.get<Tasks[]>(environment.host + "/task/research/" + description, { headers: this.headers })
-    // }
-
-    // public delTask(task: Tasks) {
-    //     return this.http.delete(environment.host + "/task/deleteTask/" + task.id, { headers: this.headers })
-    // }
-
-    // public getUserTasksByCatId(id: number) {
-    //     //console.log(id);
-    //     return this.http.get<Tasks[]>(environment.host + "/task/category/" + id, { headers: this.headers });
-    // }
 
 
     // login

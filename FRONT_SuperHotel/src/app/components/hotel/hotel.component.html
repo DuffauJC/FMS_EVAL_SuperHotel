@@ -1,0 +1,87 @@
+<div class="container">
+  <div *ngIf="hotel else loading" class="md-6 d-flex flex-wrap listAdmin">
+    <!-- hotel -->
+    <!-- template -->
+    <div class="product-content product-wrap clearfix product-deatil">
+      <div class="row">
+        <div class="col-md-5 col-sm-12 col-xs-12">
+          <div class="product-image">
+            <div id="myCarousel-2" class="carousel slide">
+
+              <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="item active">
+                  <img src="http://localhost:8080/api/download/{{hotel.imgName}}" class="img-responsive" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
+          <h2 class="name">{{hotel.name}}</h2>
+          <hr />
+          <span class="fa fa-2x">
+            {{hotel.stars}} <i class="fa fa-star fa-2x text-primary"></i>
+            <h5>(109) Votes</h5>
+          </span>
+          <hr />
+          <h3 class="price-container">
+            A partir de $65.2 la nuit.
+            <small>*includes tax</small>
+          </h3>
+          <div class="certified">
+            <p>Adresse : {{hotel.address}}</p>
+            <p>Téléphone : {{hotel.phone}}</p>
+          </div>
+          <hr />
+          <div class="description description-tabs">
+            <p>Chambres disponibles : {{hotel.freeChambers}}</p>
+
+          </div>
+          <hr />
+          <span>Toutes les chambres sont équipées, du wifi et de la TV.<br>
+            - Sanitaire et douche individuelle. <br>
+          </span>
+        </div>
+        <div class="row">
+            <h2>Liste des chambres</h2>
+            <div *ngIf="listChamber else loading" class="chamberList">
+              <div *ngFor="let cham of listChamber" class="product-chamber">
+                <!-- template list -->
+                 
+                    <div class="card card-chamber" >
+                      <div class="media card-body">
+                        <div class="media-left pr-12">
+                          <img class="avatar avatar-xl no-radius" src="../assets/img/bed.png" alt="...">
+                        </div>
+                        <div class="media-body">
+                          <div class="mb-2">
+                            <span class="fs-20 pr-16"><p>Chambre : {{cham.numberChamber}}</p></span>
+                          </div>
+                          <small class="fs-16 fw-300 ls-1"><p>Nombre de lit : {{cham.bed}}</p></small>
+                        </div>
+                        <div class="media-right text-right d-none d-md-block">
+                          <p class="fs-14 text-fade mb-12"><i class="fa fa-map-marker pr-1"></i>Dispo :{{cham.dispo}}</p>
+                          <span class="text-fade"><i class="fa fa-money pr-1"></i> Prix de la nuit {{cham.price}} euros.</span>
+                        </div>
+                      </div>
+                      <footer class="card-footer flexbox align-items-center">
+                      </footer>
+                    </div>
+                 
+                <!-- fin list -->
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- end product -->
+
+  </div>
+
+
+  <!--fin template  -->
+  <ng-template #loading>
+    <div>Loading...</div>
+  </ng-template>
+</div>

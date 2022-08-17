@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Stagiaires08P
@@ -177,6 +178,16 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public City getCityById(Long id) throws Exception {
         return cityRepository.findById(id).get();
+    }
+
+    /**
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Optional<City> findCityByName(String name) throws Exception {
+        return cityRepository.findCityByName(name);
     }
 
     /**

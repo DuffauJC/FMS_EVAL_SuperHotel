@@ -1,22 +1,24 @@
 <nav class="navbar navbar-expand-lg" id="header">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/home"><img class="logo" src="../assets/img/Utopia_logo.png" alt=""></a>
+    <a class="navbar-brand" routerLink="/home"><img class="logo" src="../assets/img/logo.svg" alt=""></a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="btn btn-warning" routerLink="/cities">Par ville</a>
+          <a routerLink="/cities">Nous somme ici</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="loggin" class="btn btn-warning" (click)="openLogin()">Login</a>
-          <a *ngIf="logout" class="btn btn-danger" (click)="disconnect()">Logout</a>
+          <a *ngIf="loggin" (click)="openLogin()">Login</a>
         </li>
-        <li class="nav-item d-flex">
-          <a *ngIf="admin" class="nav-link" id="linkAdmin" routerLink="/admin">ADMIN</a>
+        <li class="nav-item">
+          <a *ngIf="logout" (click)="disconnect()">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="admin" id="linkAdmin" routerLink="/admin">ADMIN</a>
         </li>
       </ul>
       <div *ngIf="displayName" class="col-md-4 welcome">
-        Bienvenue {{name}} <img src="../assets/img/avatar.png">
+        Bienvenue {{name}}
       </div>
       <form [formGroup]="ngForm" (ngSubmit)="onSearch(ngForm)" class="d-flex" role="search">
         <input type="text" name="name" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
@@ -39,14 +41,14 @@
       <div class="modal-body">
         <div class="login-container animated fadeInDown bootstrap snippets bootdeys">
           <div class="loginbox bg-white">
-            <div *ngIf="listTheaters" class="md-6 d-flex flex-wrap listAdmin">
+            <div *ngIf="listHotels" class="md-6 d-flex flex-wrap listAdmin">
 
               <!-- cities-->
-              <div *ngFor="let theater of listTheaters">
+              <div *ngFor="let hotel of listHotels">
 
-                <div class="card cityCard" (click)="onTheater(theater.id)">
+                <div class="card cityCard" (click)="onHotels(hotel.id)">
                   <div class="card-body">
-                    <h4 class="name"> {{theater.name}} </h4>
+                    <h4 class="name"> {{hotel.name}} </h4>
                   </div>
                 </div>
               </div>
@@ -95,9 +97,9 @@
 
             <form [formGroup]="ngLoginForm" (ngSubmit)="onLogin(ngLoginForm)">
               <div class="loginbox-textbox">
-                <input type="text" class="form-control" placeholder="Email" name="email" formControlName="email"
-                  required="">
-                <div id="emailHelp" class="form-text">Ne partagez votre email avec personne.</div>
+                <input type="text" class="form-control" placeholder="Username" name="username"
+                  formControlName="username" required="">
+
               </div>
               <div class="loginbox-textbox">
                 <input type="password" class="form-control" name="password" placeholder="Password"

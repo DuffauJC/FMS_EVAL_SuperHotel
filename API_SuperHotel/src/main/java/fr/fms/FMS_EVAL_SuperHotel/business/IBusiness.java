@@ -9,6 +9,7 @@ import fr.fms.FMS_EVAL_SuperHotel.entities.Hotel;
 import fr.fms.FMS_EVAL_SuperHotel.security.models.User;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Stagiaires08P
@@ -51,6 +52,8 @@ public interface IBusiness {
     public void deleteCity(Long id) throws Exception;
 
     public City getCityById(Long id) throws Exception;
+
+    public Optional<City> findCityByName(String name) throws Exception;
 
 
     // gestion des gestionnaires par l'admin ///////////

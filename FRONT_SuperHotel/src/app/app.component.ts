@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Hotel } from './model/hotel.model';
@@ -10,7 +10,7 @@ import { AuthenticateService } from './services/authentificate.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, DoCheck {
   title = 'FRONT_SuperHotel';
 
   ngLoginForm: FormGroup
@@ -25,7 +25,7 @@ export class AppComponent {
   // modal login
   displayLog = "none"
   data = {
-    email: "",
+    username: "",
     password: ""
   }
   // login alert
@@ -51,22 +51,23 @@ export class AppComponent {
 
     })
     this.ngLoginForm = new FormGroup({
-      email: new FormControl(this.data.email),
+      username: new FormControl(this.data.username),
       password: new FormControl(this.data.password)
     })
 
   }
   ngDoCheck(): void {
     this.showName()
-    this.linkAdmin()
+    //this.linkAdmin()
   }
   ngOnInit(): void {
     this.showName()
     this.linkAdmin()
   }
   showName() {
-    this.name = this.authenticateService.getUserFromStorage().firstName
-    if (this.name != "unknown") {
+    let rep = this.authenticateService.getUserFromStorage()
+    if (rep != null) {
+      this.name = rep.username
       this.displayName = true
       this.loggin = false
       this.logout = true
@@ -78,11 +79,11 @@ export class AppComponent {
     if (form.valid) {
       this.name = form.value.name
 
-      this.apiService.getHotelByName(this.name)
+      this.apiService.getHotelByCityName(this.name)
         .subscribe({
           next: (data) => {
             // on ouvre la popup message en fonction de la taille du tableau
-            if (data.length == 0) {
+            if (data==null) {
               this.result = true
             } else {
               this.listHotels = data
@@ -103,14 +104,14 @@ export class AppComponent {
     this.displayStyle = "none";
   }
   onHotels(id: any) {
-    this.router.navigateByUrl('Hotels/' + id)
+    this.router.navigateByUrl('hotel/' + id)
     this.closePopup()
   }
 
   onLogin(form: FormGroup): void {
     //console.log(form.value);
     if (form.valid) {
-      this.data.email = form.value.email
+      this.data.username = form.value.username
       this.data.password = form.value.password
 
       //console.log(this.data)
@@ -140,16 +141,19 @@ export class AppComponent {
     this.displayLog = "none";
   }
   linkAdmin() {
-    this.role = this.authenticateService.getUserFromStorage().role
-    if (this.role === "admin") {
-      this.admin = true
+    let roles = this.authenticateService.getUserFromStorage().roles
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i] === "ROLE_ADMIN") {
+        this.admin = true
+      }
     }
   }
+
   disconnect() {
     this.authenticateService.removeUserFromStorage()
     this.displayName = false
     this.loggin = true
     this.logout = false
-    this.admin = false
+    this.router.navigateByUrl('home')
   }
 }

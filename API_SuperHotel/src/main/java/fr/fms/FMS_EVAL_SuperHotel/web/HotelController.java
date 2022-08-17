@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -18,22 +19,21 @@ public class HotelController {
     private IBusinessImpl iBusiness;
 
     @GetMapping("/all")
-    public List<Hotel> allHotel(){
+    public List<Hotel> allHotel() {
         return iBusiness.getAllHotel();
     }
 
     @GetMapping("/{id}")
     public Hotel getHotelById(@PathVariable("id") long id) throws Exception {
-       Hotel hotel =iBusiness.getHotelById(id);
-     return hotel;
+        Hotel hotel = iBusiness.getHotelById(id);
+        return hotel;
 
     }
 
     @PostMapping("/saveHotel")
     public Hotel saveHotel(@RequestBody Hotel hotel) throws Exception {
-       return iBusiness.saveOrUpdateHotel(hotel);
+        return iBusiness.saveOrUpdateHotel(hotel);
     }
-
 
 
     @DeleteMapping("/deleteHotel/{id}")
@@ -42,10 +42,13 @@ public class HotelController {
 
     }
 
-    @GetMapping ("/hotelBycity/{city}")
-    public List<Hotel> getHotelByCityId(@PathVariable("city") City city){
-        // ahouter la recherhce de la ville puis des hotels
-        return iBusiness.readAllHotelByCity(city);
+    @GetMapping("/hotelBycity/{city}")
+    public List<Hotel> getHotelByCityId(@PathVariable("city") String city) throws Exception {
+        Optional<City> c = iBusiness.findCityByName(city);
+        if (c.isPresent()) {
+            return iBusiness.readAllHotelByCityId(c.get().getId());
+        }
+        return null;
     }
 }
 
