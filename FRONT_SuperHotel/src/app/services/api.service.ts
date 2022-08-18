@@ -6,6 +6,8 @@ import { Hotel } from '../model/hotel.model';
 import { City } from '../model/city.model';
 import { Chamber } from '../model/chamber.model';
 import { Observable } from 'rxjs';
+import { User } from '../model/user.model';
+import { Roles } from '../model/roles.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -24,7 +26,7 @@ export class ApiService {
     }
 
   
-//    get //////
+    //    get //////
     public getHotel() {
         return this.http.get<Hotel[]>(environment.host + "/hotel/all")
     }
@@ -43,7 +45,12 @@ export class ApiService {
     public getChambersByHotel(id: any) {
         return this.http.get<Chamber[]>(environment.host + "/chamber/chamberByHotel/" + id)
     }
-
+    public getUsers() {
+        return this.http.get<User[]>(environment.host + "/user/all")
+    }
+    public getHotelByUserId(id: any) {
+        return this.http.get<Hotel[]>(environment.host + "/hotel/hotelByUserId/" + id)
+    }
     // post //////
     public saveHotel(data: any) {
         return this.http.post<any>(environment.host + "/hotel/saveHotel", data, { headers: this.headers });
@@ -52,15 +59,21 @@ export class ApiService {
     public saveCity(data:any) {
         return this.http.post<any>(environment.host + "/city/saveCity", data, { headers: this.headers });
     }
-
-// del /////
+    // addGestionnire
+    public saveUser(data: any) {
+        // console.log(data)
+        return this.http.post<any>(environment.host + "/api/auth/signup", data)
+    }
+    // del /////
     public delCity(data: any) {
         return this.http.delete<any>(environment.host + "/city/deleteCity/"+ data, { headers: this.headers });
     }
     public delHotel(data: any) {
         return this.http.delete<any>(environment.host + "/hotel/deleteHotel/" + data, { headers: this.headers });
     }
-
+    public delUser(data: any) {
+        return this.http.delete<any>(environment.host + "user/deleteUser/" +data, { headers: this.headers });
+    }
     // login
     public login(data: any) {
         // console.log(data)
@@ -72,6 +85,7 @@ export class ApiService {
         formData.append('file', file);
         return this.http.post<any>(environment.host + "/api/uploadfile", formData)
     }
+  
 
 }
 

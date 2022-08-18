@@ -11,6 +11,7 @@ import { HomeAdminComponent } from './components/admin/homeAdmin.component';
 import { ListCityComponent } from './components/admin/listCity/listCity.component';
 import { ListGestionnaireComponent } from './components/admin/listGestionnaire/listGestionnaire.component';
 import { ListHotelComponent } from './components/admin/listHotel/listHotel.component';
+import { ListHotelGestionComponent } from './components/admin/listHotelGestion/listHotelGestion.component';
 import { CitiesComponent } from './components/cities/cities.component';
 import { CityHotelsComponent } from './components/cityHotels/cityHotels.component';
 import { HotelComponent } from './components/hotel/hotel.component';
@@ -27,7 +28,8 @@ import { HotelComponent } from './components/hotel/hotel.component';
     ListCityComponent,
     ListHotelComponent,
     AddGestionnaireComponent,
-    ListGestionnaireComponent
+    ListGestionnaireComponent,
+    ListHotelGestionComponent
   ],
   imports: [
     BrowserModule,

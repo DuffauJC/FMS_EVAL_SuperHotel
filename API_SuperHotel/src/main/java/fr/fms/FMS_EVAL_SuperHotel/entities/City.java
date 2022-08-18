@@ -29,7 +29,7 @@ public class City {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "city_id")
     private List<Hotel> hotels;

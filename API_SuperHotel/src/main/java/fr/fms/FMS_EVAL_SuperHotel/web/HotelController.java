@@ -50,6 +50,10 @@ public class HotelController {
         }
         return null;
     }
+    @GetMapping("/hotelByUserId/{id}")
+    public List<Hotel> hotelByUserId(@PathVariable("id") Long id) {
+        return iBusiness.findByUserId(id);
+    }
 }
 
 

@@ -23,6 +23,9 @@ role=""
                 if (user.roles[i] === "ROLE_ADMIN") {
                     this.role = "ROLE_ADMIN"
                 }
+                if (user.roles[i] === "ROLE_GESTIONNAIRE") {
+                    this.role = "ROLE_GESTIONNAIRE"
+                }
             }
             if (route.data['roles'] && route.data['roles'].indexOf(this.role) === -1) {
                 // role not authorised so redirect to home page

@@ -16,6 +16,9 @@
         <li class="nav-item">
           <a *ngIf="admin" id="linkAdmin" routerLink="/admin">ADMIN</a>
         </li>
+          <li class="nav-item">
+            <a *ngIf="gestion" id="linkAdmin" routerLink="/listHotelGestion">GESTIONNAIRE</a>
+          </li>
       </ul>
       <div *ngIf="displayName" class="col-md-4 welcome">
         Bienvenue {{name}}

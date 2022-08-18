@@ -82,8 +82,17 @@ li {
     top: 50px;
     height: 180px;
 }
-
-/* ******* movie card */
+/* ******* user card */
+#userCard {
+    cursor: pointer;
+    width: 280px;
+    background-position: bottom;
+    height: 200px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px 0px rgba(209, 45, 44, 0.75);
+    background-color: lightpink;
+}
+/* ******* hotel card */
 .hotelCard {
     cursor: pointer;
     width: 280px;
@@ -736,4 +745,96 @@ width: 400px;
 .message img.online {
     width: 40px;
     height: 40px;
+}
+/* register *************************/
+#cardbox {
+    border: 1px solid lightpink;
+    box-shadow: 10px 10px 5px 0px lightpink;
+}
+
+.row {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.masthead-text {
+    height: 300px;
+}
+
+.login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+}
+
+.hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.help-block {
+    font-size: 12px
+}
+
+.social-buttons {
+    margin: 12px 0
+}
+
+.social-buttons a {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.social-buttons>.btn-fb {
+    color: #fff;
+    background-color: #3b5998;
+    margin: 5px;
+}
+
+.social-buttons>.btn-fb:hover {
+    color: #fff;
+    background-color: #496ebc;
+}
+
+.social-buttons>.btn-tw {
+    color: #fff;
+    background-color: #55acee;
+    margin: 5px;
+}
+
+.social-buttons>.btn-tw:hover {
+    color: #fff;
+    background-color: #59b5fa;
+}
+
+.progress {
+    height: 5px;
+}
+
+.block-help {
+    font-weight: 300;
+}
+
+.hide {
+    display: none;
 }

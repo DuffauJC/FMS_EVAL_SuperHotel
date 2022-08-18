@@ -36,6 +36,7 @@ export class AppComponent implements OnInit, DoCheck {
   loggin = true
   logout = false
   admin = false
+  gestion = false
   displayName = false
   role = ""
 
@@ -58,7 +59,7 @@ export class AppComponent implements OnInit, DoCheck {
   }
   ngDoCheck(): void {
     this.showName()
-    //this.linkAdmin()
+    this.linkAdmin()
   }
   ngOnInit(): void {
     this.showName()
@@ -83,7 +84,7 @@ export class AppComponent implements OnInit, DoCheck {
         .subscribe({
           next: (data) => {
             // on ouvre la popup message en fonction de la taille du tableau
-            if (data==null) {
+            if (data == null) {
               this.result = true
             } else {
               this.listHotels = data
@@ -141,19 +142,29 @@ export class AppComponent implements OnInit, DoCheck {
     this.displayLog = "none";
   }
   linkAdmin() {
-    let roles = this.authenticateService.getUserFromStorage().roles
-    for (let i = 0; i < roles.length; i++) {
-      if (roles[i] === "ROLE_ADMIN") {
-        this.admin = true
+    let user = this.authenticateService.getUserFromStorage()
+    if (user) {
+      for (let i = 0; i < user.roles.length; i++) {
+        if (user.roles[i] === "ROLE_ADMIN") {
+          this.admin = true
+        }
+        if (user.roles[i] === "ROLE_GESTIONNAIRE") {
+          this.gestion = true
+        }
       }
     }
+
   }
+
 
   disconnect() {
     this.authenticateService.removeUserFromStorage()
     this.displayName = false
     this.loggin = true
     this.logout = false
+    this.admin = false
+    this.gestion=false
+    this.ngOnInit()
     this.router.navigateByUrl('home')
   }
 }

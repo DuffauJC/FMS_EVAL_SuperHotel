@@ -9,7 +9,9 @@ import fr.fms.FMS_EVAL_SuperHotel.dao.HotelRepository;
 import fr.fms.FMS_EVAL_SuperHotel.entities.Chamber;
 import fr.fms.FMS_EVAL_SuperHotel.entities.City;
 import fr.fms.FMS_EVAL_SuperHotel.entities.Hotel;
+import fr.fms.FMS_EVAL_SuperHotel.security.models.Role;
 import fr.fms.FMS_EVAL_SuperHotel.security.models.User;
+import fr.fms.FMS_EVAL_SuperHotel.security.repository.RoleRepository;
 import fr.fms.FMS_EVAL_SuperHotel.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,9 @@ public class IBusinessImpl implements IBusiness {
     UserRepository userRepository;
 
     @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
     EntityManager entityManager;
 
 
@@ -48,13 +53,6 @@ public class IBusinessImpl implements IBusiness {
         return hotelRepository.findAll();
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public List<Hotel> getHotelByCityId(Long id) {
-        return hotelRepository.findByCityId(id);
-    }
 
     /**
      * @param hotel
@@ -83,6 +81,15 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public List<Hotel> readAllHotelByCityId(Long id) {
         return hotelRepository.findByCityId(id);
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Hotel> findByUserId(Long id) {
+        return hotelRepository.findByUserId(id);
     }
 
     @Override
@@ -223,6 +230,23 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public void deleteUser(Long id) throws Exception {
         userRepository.deleteById(id);
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public User getUserById(long id) {
+        return userRepository.findById(id).get();
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<Role> getAllRoles() {
+        return roleRepository.findAll();
     }
 
 

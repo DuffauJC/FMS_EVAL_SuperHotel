@@ -6,6 +6,7 @@ package fr.fms.FMS_EVAL_SuperHotel.business;
 import fr.fms.FMS_EVAL_SuperHotel.entities.Chamber;
 import fr.fms.FMS_EVAL_SuperHotel.entities.City;
 import fr.fms.FMS_EVAL_SuperHotel.entities.Hotel;
+import fr.fms.FMS_EVAL_SuperHotel.security.models.Role;
 import fr.fms.FMS_EVAL_SuperHotel.security.models.User;
 
 import java.util.List;
@@ -20,8 +21,6 @@ public interface IBusiness {
 
     public List<Hotel> getAllHotel();
 
-    public List<Hotel> getHotelByCityId(Long id);
-
     public Hotel saveOrUpdateHotel(Hotel hotel) throws Exception;
 
     public void deleteHotel(Long id) throws Exception;
@@ -30,6 +29,7 @@ public interface IBusiness {
 
     public List<Hotel> readAllHotelByCityId(Long id);
 
+    public List<Hotel> findByUserId(Long id);
 
     //	gestion chambre /////////////
 
@@ -63,4 +63,8 @@ public interface IBusiness {
     public User saveOrUpdateUser(User user) throws Exception;
 
     public void deleteUser(Long id) throws Exception;
+
+   public User getUserById(long id);
+
+   public List<Role> getAllRoles();
 }

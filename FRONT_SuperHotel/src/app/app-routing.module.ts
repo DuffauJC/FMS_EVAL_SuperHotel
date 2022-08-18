@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCityComponent } from './components/admin/addCity/addCity.component';
+import { AddGestionnaireComponent } from './components/admin/addGestionnaire/addGestionnaire.component';
 import { AddHotelComponent } from './components/admin/addHotel/addHotel.component';
 import { HomeAdminComponent } from './components/admin/homeAdmin.component';
 import { ListCityComponent } from './components/admin/listCity/listCity.component';
 import { ListGestionnaireComponent } from './components/admin/listGestionnaire/listGestionnaire.component';
 import { ListHotelComponent } from './components/admin/listHotel/listHotel.component';
+import { ListHotelGestionComponent } from './components/admin/listHotelGestion/listHotelGestion.component';
 import { CitiesComponent } from './components/cities/cities.component';
 import { CityHotelsComponent } from './components/cityHotels/cityHotels.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,6 +20,9 @@ import { Role } from './model/role';
 const routes: Routes = [
   {
     path: 'cities', component: CitiesComponent
+  },
+  {
+    path: 'listHotelGestion', component: ListHotelGestionComponent
   },
   {
     path: 'cityHotels/:name', component: CityHotelsComponent
@@ -58,16 +63,22 @@ const routes: Routes = [
     data: { roles: [Role.Admin] }
   },
   {
-    path: 'listGestionnaire',
+    path: 'listGestionnaires',
     component: ListGestionnaireComponent,
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] }
   },
   {
     path: 'addGestionnaire',
-    component: ListGestionnaireComponent,
+    component: AddGestionnaireComponent,
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'listHotelGestion',
+    component: ListHotelGestionComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Gestionnaire] }
   },
   {
     path: '404', component: NotFoundComponent
