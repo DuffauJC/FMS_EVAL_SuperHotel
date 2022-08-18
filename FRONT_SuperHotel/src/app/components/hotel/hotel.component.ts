@@ -14,7 +14,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class HotelComponent implements OnInit {
 
   hotel: Hotel | undefined
-  listChamber:Chamber[]|undefined
+  listChamber: Chamber[] | undefined
   error = null;
   id: number
 
@@ -24,11 +24,11 @@ export class HotelComponent implements OnInit {
   ) {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.hotel = new Hotel(1, "", "", 0, "", "", 0, new City(0, ""))
-    
+
   }
   ngOnInit(): void {
     this.getDetailHotel()
-   this.getChamberHotel()
+    this.getChamberHotel()
   }
 
 
@@ -43,14 +43,18 @@ export class HotelComponent implements OnInit {
   }
 
   getChamberHotel() {
-   this.listChamber=[]
+    this.listChamber = []
     this.apiservice.getChambersByHotel(this.id).subscribe({
       next: (data) =>
         //console.log(data),
         this.listChamber = data,
       error: (err) => this.error = err.message,
       complete: () => this.error = null
-  })
-}
+    })
+  }
+// counter pour affichage d'étoile
+  counter(i: number) {
+    return new Array(i);
+  }
 
 }

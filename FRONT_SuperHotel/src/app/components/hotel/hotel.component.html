@@ -18,12 +18,14 @@
           </div>
         </div>
         <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
-          <h2 class="name">{{hotel.name}}</h2>
+          <h2 class="">{{hotel.name}}</h2>
           <hr />
-          <span class="fa fa-2x">
-            {{hotel.stars}} <i class="fa fa-star fa-2x text-primary"></i>
+            <ul class="list-group list-group-horizontal-sm"> Stars:
+              <li class="list-group mt-1" *ngFor="let in of counter(hotel.stars); let i = index">
+                <i class="fa fa-star fa-2x text-primary"></i>
+              </li>
+            </ul>
             <h5>(109) Votes</h5>
-          </span>
           <hr />
           <h3 class="price-container">
             A partir de $65.2 la nuit.

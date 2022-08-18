@@ -18,7 +18,6 @@ role=""
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authenticateService.getUserFromStorage()
         if (user) {
-            console.log(user)
             // check if route is restricted by role
             for (let i = 0; i < user.roles.length; i++) {
                 if (user.roles[i] === "ROLE_ADMIN") {

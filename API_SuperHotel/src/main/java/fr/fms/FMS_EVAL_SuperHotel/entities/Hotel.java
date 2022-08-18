@@ -32,7 +32,7 @@ public class Hotel {
 	@ManyToOne
 	private City city;
 
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JsonIgnore
 	@JoinColumn(name = "hotel_id")
 	private List<Chamber> chamber;

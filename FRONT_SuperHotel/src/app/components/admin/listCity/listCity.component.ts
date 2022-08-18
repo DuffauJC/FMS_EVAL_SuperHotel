@@ -16,7 +16,7 @@ export class ListCityComponent implements OnInit, DoCheck {
     error = null
     displayStyle = "none";
     display = false
-    problemAdmin = false
+
 
     data = {
         id: 0,
@@ -25,7 +25,7 @@ export class ListCityComponent implements OnInit, DoCheck {
     listCities: City[] | undefined
     constructor(
         private apiService: ApiService,
-        private router: Router, public authenticateService: AuthenticateService, 
+        private router: Router, public authenticateService: AuthenticateService,
     ) {
         this.data = {
             id: 0,
@@ -36,10 +36,10 @@ export class ListCityComponent implements OnInit, DoCheck {
         })
     }
     ngOnInit() {
-      this.getAllCities()
+        this.getAllCities()
     }
     ngDoCheck(): void {
-        this.verifySession()
+
     }
     getAllCities() {
         this.listCities = []
@@ -49,17 +49,7 @@ export class ListCityComponent implements OnInit, DoCheck {
             complete: () => this.error = null
         })
     }
-    verifySession() {
-        let user = this.authenticateService.getUserFromStorage()
-       
-        if (user.role != "admin") {
-            this.problemAdmin = true
-            setTimeout(() => {
-                this.problemAdmin = false
-                this.router.navigateByUrl('home')
-            }, 1500)
-        }
-    }
+
     openPopup(city: City) {
         this.displayStyle = "block";
         this.ngForm = new FormGroup({
@@ -70,37 +60,37 @@ export class ListCityComponent implements OnInit, DoCheck {
     closePopup() {
         this.displayStyle = "none";
     }
-    // onUpdateCity(form: FormGroup) {
+    onUpdateCity(form: FormGroup) {
 
-    //     //console.log(form.value)
-    //     this.data.name = form.value.name
-     
-    //     document.getElementById('modal-btn')?.classList.toggle('is_active')
+        //console.log(form.value)
+        this.data.name = form.value.name
 
-    //     this.apiService.updateCity(this.data)
-    //         .subscribe({
-    //             next: (data) => console.log(data),
-    //             error: (err) => this.error = err.message,
-                
-    //     })
-    //     this.display = true
+        document.getElementById('modal-btn')?.classList.toggle('is_active')
 
-    //     setTimeout(() => {
-    //         this.display = false
-    //         this.displayStyle = "none";
-    //         document.getElementById('modal-btn')?.classList.toggle('is_active')
-    //         this.ngOnInit()
-    //     }, 500)
-    // }
+        this.apiService.saveCity(this.data)
+            .subscribe({
+                next: (data) => console.log(data),
+                error: (err) => this.error = err.message,
 
-    // delCity(city: City) {
-    //     if (confirm("Vous êtes sur de vouloir supprimer cette ville ?")) {
-    //         this.apiService.delCity(city)
-    //             .subscribe({
-    //                 next: (data) => console.log(data),
-    //                 error: (err) => this.error = err.message,
+            })
+        this.display = true
 
-    //             })
-    //     }
-    // }
+        setTimeout(() => {
+            this.display = false
+            this.displayStyle = "none";
+            document.getElementById('modal-btn')?.classList.toggle('is_active')
+            this.ngOnInit()
+        }, 500)
+    }
+
+    delCity(city: City) {
+        if (confirm("Vous êtes sur de vouloir supprimer cette ville ?")) {
+            this.apiService.delCity(city.id)
+                .subscribe({
+                    next: (data) => console.log(data),
+                    error: (err) => this.error = err.message,
+                    complete: () => this.ngOnInit()
+                })
+        }
+    }
 }

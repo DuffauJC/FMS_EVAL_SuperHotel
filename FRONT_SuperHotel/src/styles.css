@@ -65,15 +65,15 @@ li {
 /* ********  card city */
 .cityCard {
     cursor: pointer;
-    width: 280px;
-    background-image: url("/assets/img/facade.jpg");
+    width: 350px;
+    background-image: url("/assets/img/facade1.jpg");
     background-position: center;
     max-height: 750px;
     margin: 20px;
     box-shadow: 10px 10px 5px 0px rgba(209, 45, 44, 0.75);
 }
 .name{
-   color: black;
+   color: white;
     font-style: italic;
     font-weight: bold; 
 }
@@ -103,8 +103,11 @@ li {
 #modalSize {
     border: 3px solid rgba(209, 45, 44, 0.75);
     box-shadow: 10px 10px 5px 0px rgba(209, 45, 44, 0.75);
+   
 }
-
+.modal-img{
+    height: 200px;
+}
 .modal-header button {
     background-color: red;
     border-radius: 50%;

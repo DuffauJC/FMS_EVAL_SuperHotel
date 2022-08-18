@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Hotel } from '../model/hotel.model';
 import { City } from '../model/city.model';
 import { Chamber } from '../model/chamber.model';
+import { Observable } from 'rxjs';
 
 
 @Injectable({ providedIn: 'root' })
@@ -44,19 +45,32 @@ export class ApiService {
     }
 
     // post //////
-    public saveHotel(hotel: Hotel) {
-        return this.http.post<Hotel>(environment.host + "/hotel/saveHotel", hotel, { headers: this.headers });
+    public saveHotel(data: any) {
+        return this.http.post<any>(environment.host + "/hotel/saveHotel", data, { headers: this.headers });
     }
 
     public saveCity(data:any) {
         return this.http.post<any>(environment.host + "/city/saveCity", data, { headers: this.headers });
     }
 
+// del /////
+    public delCity(data: any) {
+        return this.http.delete<any>(environment.host + "/city/deleteCity/"+ data, { headers: this.headers });
+    }
+    public delHotel(data: any) {
+        return this.http.delete<any>(environment.host + "/hotel/deleteHotel/" + data, { headers: this.headers });
+    }
 
     // login
     public login(data: any) {
         // console.log(data)
         return this.http.post<any>(environment.host + "/api/auth/signin", data)
+    }
+    // upload img
+    public uploadImage(file: File): Observable<Response> {
+        const formData: FormData = new FormData();
+        formData.append('file', file);
+        return this.http.post<any>(environment.host + "/api/uploadfile", formData)
     }
 
 }

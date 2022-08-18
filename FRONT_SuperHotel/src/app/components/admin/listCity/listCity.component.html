@@ -4,7 +4,7 @@
     <!-- product -->
     <div *ngFor="let city of listCities">
       <div class="card cityCard">
-        <!-- <a class="x-del" (click)="delCity(city)"><img src="../../../assets/img/x-button.png" alt="delete"></a> -->
+        <a class="x-del" (click)="delCity(city)"><img src="../assets/img/x-button.png" alt="delete"></a>
         <!-- Button trigger modal -->
         <div class="card-body" (click)="openPopup(city)">
           <h4 class="name"> {{city.name}} </h4>
@@ -33,7 +33,7 @@
         <div class="login-container animated fadeInDown bootstrap snippets bootdeys">
           <div class="loginbox bg-white">
 
-            <!-- <form [formGroup]="ngForm" (ngSubmit)="onUpdateCity(ngForm)">
+            <form [formGroup]="ngForm" (ngSubmit)="onUpdateCity(ngForm)">
               <div class="loginbox-textbox">
                 <input type="text" name="name" class="form-control" placeholder="Nom" formControlName="name">
               </div>
@@ -53,16 +53,10 @@
               <div *ngIf="display" class=" alert alert-success col-md-12">
                 Ville modifiée.
               </div>
-            </form> -->
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-
-
-<div *ngIf="problemAdmin" class=" alert alert-danger col-md-12 ">
-  Vous avec été déconnécté, reconnectez-vous.
 </div>

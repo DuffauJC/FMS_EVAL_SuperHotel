@@ -12,18 +12,25 @@ import { City } from 'src/app/model/city.model';
 })
 
 export class AddHotelComponent implements OnInit, DoCheck {
+
     ngForm: FormGroup
     display = false
-    problemAdmin = false
     error = null
     data = {
+       
         name: "",
         address: "",
-        idCity:0
+        freeChambers: 3,
+        imgName: "unknown.png",
+        phone: "",
+        stars: 2,
+        city: {} as City
     }
+    file!: File;
+    imgUrl = ""
     listCities: City[] | undefined
     model: City | undefined
-    
+
 
     constructor(private apiService: ApiService,
         private router: Router, public authenticateService: AuthenticateService
@@ -31,7 +38,11 @@ export class AddHotelComponent implements OnInit, DoCheck {
         this.ngForm = new FormGroup({
             name: new FormControl(this.data.name),
             address: new FormControl(this.data.address),
-            idCity:new FormControl(this.data.idCity)
+            imgName: new FormControl(this.data.imgName),
+            freeChambers: new FormControl(this.data.freeChambers),
+            phone: new FormControl(this.data.phone),
+            stars: new FormControl(this.data.stars),
+            city:new FormControl(this.data.city)
         })
     }
 
@@ -40,19 +51,9 @@ export class AddHotelComponent implements OnInit, DoCheck {
         this.getAllCities()
     }
     ngDoCheck(): void {
-        this.verifySession()
+        
     }
-    verifySession() {
-        let user = this.authenticateService.getUserFromStorage()
-       
-        if (user.role != "admin") {
-            this.problemAdmin = true
-            setTimeout(() => {
-                this.problemAdmin = false
-                this.router.navigateByUrl('home')
-            }, 1500)
-        }
-    }
+ 
     getAllCities() {
         this.listCities = []
         this.apiService.getCities().subscribe({
@@ -61,36 +62,63 @@ export class AddHotelComponent implements OnInit, DoCheck {
             complete: () => this.error = null
         })
     }
-    // onSaveTheater(form: FormGroup) {
+    onSaveHotel(form: FormGroup) {
+        if (confirm("Valider l'ajout de l'hotel ?")) {
+            this.data.name = form.value.name
+            this.data.address = form.value.address
+            this.data.freeChambers = form.value.freeChambers
+            this.data.phone = form.value.phone
+            this.data.stars = form.value.stars
+            this.data.city = form.value.city
+            this.data.imgName = this.imgUrl
 
-    //     this.data.name = form.value.name
-    //     this.data.address = form.value.address
-    //     this.data.idCity =parseInt(form.value.idCity) 
-        
-    //     document.getElementById('modal-btn')?.classList.toggle("is_active")
-    //     this.apiService.postTheater(this.data)
-    //         .subscribe({
-    //             next: (data) => console.log(data),
-    //             error: (err) => this.error = err.message,
-    //             complete: () => this.router.navigateByUrl('listTheater')
-    //         })
-    //     this.display = true
-    //     setTimeout(() => {
-    //         this.display = false
-    //         document.getElementById('modal-btn')?.classList.toggle("is_active")
-    //         this.ngOnInit()
-    //     }, 1500)
-    // }
+            
+            document.getElementById('modal-btn')?.classList.toggle("is_active")
+
+            this.apiService.uploadImage(this.file).subscribe({
+                next: (data) => console.log(data)
+            })
+            this.apiService.saveHotel(this.data)
+                .subscribe({
+                    next: (data) => console.log(data),
+                    error: (err) => this.error = err.message,
+                    complete: () => this.router.navigateByUrl('listHotels')
+                })
+            this.display = true
+            setTimeout(() => {
+                this.display = false
+                document.getElementById('modal-btn')?.classList.toggle("is_active")
+                this.ngOnInit()
+            }, 1500)
+        }
+    }
     formData() {
         this.data = {
             name: "",
             address: "",
-            idCity:0
+            freeChambers: 3,
+            imgName: "unknown.png",
+            phone: "",
+            stars: 2,
+            city: {} as City
         }
         this.ngForm = new FormGroup({
             name: new FormControl(this.data.name),
             address: new FormControl(this.data.address),
-            idCity: new FormControl(this.data.idCity)
+            imgName: new FormControl(this.data.imgName),
+            freeChambers: new FormControl(this.data.freeChambers),
+            phone: new FormControl(this.data.phone),
+            stars: new FormControl(this.data.stars),
+            city: new FormControl(this.data.city)
         })
     }
+    /// img 
+    processFile(event: any) {
+        // const file: File = event.target.files[0];
+        this.file = event.target.files[0];
+        // console.log(this.file.name)
+        this.imgUrl = this.file.name
+
+    }
+  ////////////////
 }
