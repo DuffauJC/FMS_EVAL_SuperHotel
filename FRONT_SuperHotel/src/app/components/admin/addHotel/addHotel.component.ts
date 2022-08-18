@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authentificate.service';
 import { ApiService } from 'src/app/services/api.service';
 import { City } from 'src/app/model/city.model';
+import { User } from 'src/app/model/user.model';
 
 
 @Component({
@@ -17,19 +18,24 @@ export class AddHotelComponent implements OnInit, DoCheck {
     display = false
     error = null
     data = {
-       
+
         name: "",
         address: "",
         freeChambers: 3,
         imgName: "unknown.png",
         phone: "",
         stars: 2,
-        city: {} as City
+        city: {} as City,
+       //user: {} as User
     }
     file!: File;
     imgUrl = ""
     listCities: City[] | undefined
+    listGestionnaire: User[] | undefined
     model: City | undefined
+    gestionnaireRole = "ROLE_GESTIONNAIRE"
+    gestionnaire: User | undefined
+
 
 
     constructor(private apiService: ApiService,
@@ -42,18 +48,27 @@ export class AddHotelComponent implements OnInit, DoCheck {
             freeChambers: new FormControl(this.data.freeChambers),
             phone: new FormControl(this.data.phone),
             stars: new FormControl(this.data.stars),
-            city:new FormControl(this.data.city)
+            city: new FormControl(this.data.city),
+            //user: new FormControl(this.data.user)
         })
     }
 
     ngOnInit() {
         this.formData()
         this.getAllCities()
+        this.getAllGestionnaire()
     }
     ngDoCheck(): void {
-        
+
     }
- 
+    getAllGestionnaire() {
+        this.listGestionnaire = []
+        this.apiService.getUsersByRole(this.gestionnaireRole).subscribe({
+            next: (data) => this.listGestionnaire = data,
+            error: (err) => this.error = err.message,
+            complete: () => this.error = null
+        })
+    }
     getAllCities() {
         this.listCities = []
         this.apiService.getCities().subscribe({
@@ -70,9 +85,15 @@ export class AddHotelComponent implements OnInit, DoCheck {
             this.data.phone = form.value.phone
             this.data.stars = form.value.stars
             this.data.city = form.value.city
+
+            // this.data.user.username = form.value.user.username
+            // this.data.user.email = form.value.user.email
+            // this.data.user.password = form.value.user.password
+            //this.data.user.id = form.value.user.id
+            
             this.data.imgName = this.imgUrl
 
-            
+            //console.log(this.data)
             document.getElementById('modal-btn')?.classList.toggle("is_active")
 
             this.apiService.uploadImage(this.file).subscribe({
@@ -100,7 +121,8 @@ export class AddHotelComponent implements OnInit, DoCheck {
             imgName: "unknown.png",
             phone: "",
             stars: 2,
-            city: {} as City
+            city: {} as City,
+            //user: {} as User
         }
         this.ngForm = new FormGroup({
             name: new FormControl(this.data.name),
@@ -109,7 +131,8 @@ export class AddHotelComponent implements OnInit, DoCheck {
             freeChambers: new FormControl(this.data.freeChambers),
             phone: new FormControl(this.data.phone),
             stars: new FormControl(this.data.stars),
-            city: new FormControl(this.data.city)
+            city: new FormControl(this.data.city),
+            //user: new FormControl(this.data.user)
         })
     }
     /// img 
@@ -120,5 +143,5 @@ export class AddHotelComponent implements OnInit, DoCheck {
         this.imgUrl = this.file.name
 
     }
-  ////////////////
+    ////////////////
 }

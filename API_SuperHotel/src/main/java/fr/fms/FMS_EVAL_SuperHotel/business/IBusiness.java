@@ -6,6 +6,7 @@ package fr.fms.FMS_EVAL_SuperHotel.business;
 import fr.fms.FMS_EVAL_SuperHotel.entities.Chamber;
 import fr.fms.FMS_EVAL_SuperHotel.entities.City;
 import fr.fms.FMS_EVAL_SuperHotel.entities.Hotel;
+import fr.fms.FMS_EVAL_SuperHotel.security.models.ERole;
 import fr.fms.FMS_EVAL_SuperHotel.security.models.Role;
 import fr.fms.FMS_EVAL_SuperHotel.security.models.User;
 
@@ -67,4 +68,8 @@ public interface IBusiness {
    public User getUserById(long id);
 
    public List<Role> getAllRoles();
+
+   public Optional<Role> findRoleByName(ERole name);
+
+  public  List<User> readAllUserByRolesName(ERole name);
 }

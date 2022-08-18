@@ -9,6 +9,7 @@ import fr.fms.FMS_EVAL_SuperHotel.dao.HotelRepository;
 import fr.fms.FMS_EVAL_SuperHotel.entities.Chamber;
 import fr.fms.FMS_EVAL_SuperHotel.entities.City;
 import fr.fms.FMS_EVAL_SuperHotel.entities.Hotel;
+import fr.fms.FMS_EVAL_SuperHotel.security.models.ERole;
 import fr.fms.FMS_EVAL_SuperHotel.security.models.Role;
 import fr.fms.FMS_EVAL_SuperHotel.security.models.User;
 import fr.fms.FMS_EVAL_SuperHotel.security.repository.RoleRepository;
@@ -247,6 +248,24 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
+    }
+
+    /**
+     * @param name
+     * @return
+     */
+    @Override
+    public Optional<Role> findRoleByName(ERole name) {
+        return roleRepository.findByName(name);
+    }
+
+    /**
+     * @param name
+     * @return
+     */
+    @Override
+    public List<User> readAllUserByRolesName(ERole name) {
+        return userRepository.findByRolesName(name);
     }
 
 

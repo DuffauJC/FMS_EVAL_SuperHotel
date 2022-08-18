@@ -46,10 +46,13 @@ export class ApiService {
         return this.http.get<Chamber[]>(environment.host + "/chamber/chamberByHotel/" + id)
     }
     public getUsers() {
-        return this.http.get<User[]>(environment.host + "/user/all")
+        return this.http.get<User[]>(environment.host + "/user/all", { headers: this.headers })
+    }
+    public getUsersByRole(data:any) {
+        return this.http.get<User[]>(environment.host + "/user/userByRole/" + data, { headers: this.headers })
     }
     public getHotelByUserId(id: any) {
-        return this.http.get<Hotel[]>(environment.host + "/hotel/hotelByUserId/" + id)
+        return this.http.get<Hotel[]>(environment.host + "/hotel/hotelByUserId/" + id, { headers: this.headers })
     }
     // post //////
     public saveHotel(data: any) {

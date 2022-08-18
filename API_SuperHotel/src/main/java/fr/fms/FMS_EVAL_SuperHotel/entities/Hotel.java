@@ -36,6 +36,8 @@ public class Hotel {
 	@ManyToOne
 	private City city;
 
+
+
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JsonIgnore
 	@JoinColumn(name = "hotel_id")
@@ -56,7 +58,7 @@ public class Hotel {
 		this.freeChambers = freeChambers;
 		this.imgName = imgName;
 		this.city = city;
-
 	}
+
 
 }
