@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
       .authorizeRequests()
             .antMatchers(HttpMethod.POST, "/hotel/saveHotel").hasRole("ADMIN")
-            .antMatchers(HttpMethod.POST, "/hotel/saveHotel","/hotel/hotelByUserId/{id}").hasRole("GESTIONNAIRE")
+            .antMatchers(HttpMethod.POST, "/hotel/saveHotel").hasRole("GESTIONNAIRE")
             .antMatchers(HttpMethod.GET, "/hotel/hotelByUserId/{id}").hasRole("GESTIONNAIRE")
             .antMatchers(HttpMethod.DELETE, "/hotel/deleteHotel/{id}").hasRole("ADMIN")
             .antMatchers(HttpMethod.POST, "/city/saveCity").hasRole("ADMIN")
